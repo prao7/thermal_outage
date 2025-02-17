@@ -1,10 +1,19 @@
 import os
 import pandas as pd
 from thermal_outage_rates_functions import get_outage_curve
+import argparse
 
 # Define input and output directories
-input_dir = "thermal_outage/input_temps"
-output_dir = "thermal_outage/output_curves"
+# Set up argument parser
+parser = argparse.ArgumentParser(description="Process thermal outage data.")
+parser.add_argument('--input_dir', type=str, required=True, help='Path to the input directory containing CSV files.')
+parser.add_argument('--output_dir', type=str, required=True, help='Path to the output directory for saving processed files.')
+
+args = parser.parse_args()
+
+# Define input and output directories from arguments
+input_dir = args.input_dir
+output_dir = args.output_dir
 
 # Ensure output directory exists
 os.makedirs(output_dir, exist_ok=True)
